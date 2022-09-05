@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Stealthy Scouting Data</title>
+<style>
+table {
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+input[type=text] {
+  width: 10%;
+  padding: 5px 4px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+
+th {
+	background-color: #000000;
+	color: white;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+
+.button {
+	border: none;
+	color: white;
+	padding: 20px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: auto;
+	margin: auto;
+	cursor: pointer;
+	width: 200px;
+	margin: 0 auto;
+}
+
+.button1 {background-color: #4CAF50;} /* Green */
+.button2 {background-color: #008CBA;} /* Blue */
+.button3 {background-color: #FF3333;} /* Red */
+.button4 {background-color: #FC33FF;} /* Pink */
+.button5 {background-color: #FFC933;} /* Orange */
+</style>
+
+<script>
+	function tickUp(id, iterateVal) {
+		var value = parseInt(document.getElementById(id).value);
+		value = isNaN(value) ? 0 : value;
+		/*if (document.getElementById("highgoal").checked == true)
+		{
+			iterateVal = iterateVal * 2
+		}
+			*/
+		value = (value + iterateVal);
+		document.getElementById(id).value = value;
+		console.log(document.getElementById());
+	}
+</script>
+	
+<script
+		src="https://code.jquery.com/jquery-3.4.1.js"
+		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		crossorigin="anonymous"></script>
+	<script>
+		function SubForm (){
+			$.ajax({
+				url:"https://api.apispreadsheets.com/data/fidevHc7A6NfheZ7/",
+				type:"post",
+				data:$("#myForm").serializeArray(),
+				success: function(){
+					alert("Form Data Submitted :)")
+				},
+				error: function(){
+					alert("There was an error :(")
+				}
+			});
+		}
+	</script>
+</head>
+
+<body>
+	<form id="myForm">
+		<label for="teamnum">Team number:</label>
+		<input name="teamnum" type="text" id="teamnum">
+		<br/>
+		<label for="highgoal">High goal?</label>
+		<input type="checkbox" id="highgoal" name="highgoal"value="High">
+		<br/>
+		<label>Auto points: </label>
+		<input name="autopts" type="text" id="autopts" value="0"/>
+		<br/>
+		<label>Teleop points: </label>
+		<input name="teleoppts" type="text" id="teleoppts" value="0"/>
+		<br/>
+		<label>Climb level:</label>
+		<input name="climbpts" type="text" id="climbpts" value="0"/>
+		<br/>
+		<label>Defence score: </label>
+		<input name="defencepts" type="text" id="defencepts" value="0"/>
+		<br/>
+		<label for="feedback">Feedback/Notes:</label>
+		<input name="feedback" id="feedback" name="feedback"></input>
+		
+	</form>
+	<button onclick='SubForm()'>Submit</button>
+	<!--<form autocomplete="off">
+		<br/>
+		<br/>
+			<label for="teamnum">Team number:</label>
+			<input name="teamnum" type="text" id="teamnum">
+		
+		<br/>
+			Auto points: <input name="autopts" id="autopts" value="0"/>
+			Teleop points: <input name="teleoppts" type="text" id="teleoppts" value="0"/>
+		<br/>	
+			Climb level: <input name="climbpts" type="text" id="climbpts" value="0"/>
+			Defence score: <input name="defencepts" type="text" id="defencepts" value="0"/>
+		<br/>
+		<button onclick='SubForm()'>Submit</button>
+	</form>-->
+	<br>
+			
+			
+		<br>
+		<br>
+			<button type="button" onClick="tickUp('autopts', 2)" style="width:49%" class = "button button3">Auto Low Goal</button>
+			<button type="button" onClick="tickUp('autopts', 4)" style="width:49%; float: right;" class = "button button1">Auto High Goal</button>
+		<br>
+		<br>
+			<button type="button" onClick="tickUp('teleoppts', 1)" style="width:49%" class = "button button3">Teleop Low Goal</button>
+			<button type="button" onClick="tickUp('teleoppts', 2)" style="width:49%; float: right;" class = "button button2">Teleop High Goal</button>
+		<br>
+		<br>
+			<button type="button" onClick="tickUp('climbpts', -1)" style="width:49%" class = "button button3">Climb Level Down</button>
+			<button type="button" onClick="tickUp('climbpts', 1)" style="width:49%; float: right;" class = "button button4">Climb Level Up</button>
+		<br>
+			
+		<br>
+			<button type="button" onClick="tickUp('defencepts', 1)" style="width:100%" class = "button button5">Defended Shots</button>
+		<br>
+
+</body>
+
+
+</html>
