@@ -56,6 +56,10 @@ tr:nth-child(even) {
 	margin: auto;
 	padding: 20px 32px;
 }
+/*
+.btn-dark, .btn-dark::shadow {
+	background-color: #FC33FF;
+}
 
 .button {
 	border: none;
@@ -71,11 +75,12 @@ tr:nth-child(even) {
 	margin: 0 auto;
 }
 
-.button1 {background-color: #4CAF50;} /* Green */
-.button2 {background-color: #008CBA;} /* Blue */
-.button3 {background-color: #FF3333;} /* Red */
-.button4 {background-color: #FC33FF;} /* Pink */
-.button5 {background-color: #FFC933;} /* Orange */
+.button1 {background-color: #4CAF50;} 
+.button2 {background-color: #008CBA;} 
+.button3 {background-color: #FF3333;} 
+.button4 {background-color: #FC33FF;} 
+.button5 {background-color: #FFC933;} 
+*/
 </style>
 
 <script>
@@ -132,15 +137,14 @@ tr:nth-child(even) {
 					<label>Climb level:</label>
 					<input class="form-control" name="climbpts" id="climbpts" value="0"/>
 
-					<label>Defence score: </label>
+					<label>Defense score: </label>
 					<input class="form-control" name="defencepts" id="defencepts" value="0"/>
 				</div>
 			</div>
 			<label for="feedback">Feedback/Notes:</label>
 			<input class="form-control" name="feedback" id="feedback" name="feedback"></input>
 			<br>
-			<button class="btn btn-primary" onclick='SubForm()'>Submit Data</button>
-			<br>
+			<button class="btn-dark" onclick='SubForm()'>Submit Data</button>
 		</form>
 	</div>
 	
@@ -148,16 +152,16 @@ tr:nth-child(even) {
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<button onClick="tickUp('autopts', 2)" type="button" class="btn btn-primary btn-block mb-2 mr-sm-2"> Auto Low Goal </button>
-				<button onClick="tickUp('teleoppts', 1)" type="button" class = "btn btn-primary btn-block mb-2 mr-sm-2">Teleop Low Goal </button>
-				<button onClick="tickUp('climbpts', -1)" type="button" class = "btn btn-primary btn-block mb-2 mr-sm-2">Climb Level Down</button>
-				<button onClick="tickUp('defencepts', -1)" type="button" class = "btn btn-primary btn-block mb-2 mr-sm-2">Defended Shots Down</button>
+				<button onClick="tickUp('autopts', 2)" type="button" class="btn btn-primary btn-block mb-2 mr-sm-2"> Auto Low </button>
+				<button onClick="tickUp('teleoppts', 1)" type="button" class = "btn btn-success btn-block mb-2 mr-sm-2">Teleop Low </button>
+				<button onClick="tickUp('climbpts', -1)" type="button" class = "btn btn-info btn-block mb-2 mr-sm-2">Climb Level -</button>
+				<button onClick="tickUp('defencepts', -1)" type="button" class = "btn btn-warning btn-block mb-2 mr-sm-2">Defended Shots -</button>
 			</div>
 			<div class="col">
-				<button onClick="tickUp('autopts', 4)" type="button" class = "btn btn-primary btn-block mb-2 mr-sm-2">Auto High Goal</button>
-				<button onClick="tickUp('teleoppts', 2)" type="button" class = "btn btn-primary btn-block mb-2 mr-sm-2">Teleop High Goal</button>
-				<button onClick="tickUp('climbpts', 1)" type="button" class = "btn btn-primary btn-block mb-2 mr-sm-2"> Climb Level Up</button>
-				<button onClick="tickUp('defencepts', 1)" type="button" class = "btn btn-primary btn-block mb-2 mr-sm-2">Defended Shots Up</button>
+				<button onClick="tickUp('autopts', 4)" type="button" class = "btn btn-primary btn-block mb-2 mr-sm-2">Auto High</button>
+				<button onClick="tickUp('teleoppts', 2)" type="button" class = "btn btn-success btn-block mb-2 mr-sm-2">Teleop High</button>
+				<button onClick="tickUp('climbpts', 1)" type="button" class = "btn btn-info btn-block mb-2 mr-sm-2"> Climb Level +</button>
+				<button onClick="tickUp('defencepts', 1)" type="button" class = "btn btn-warning btn-block mb-2 mr-sm-2">Defended Shots +</button>
 			</div>
 		</div>
 	</div>
