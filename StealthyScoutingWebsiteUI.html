@@ -1,66 +1,69 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Stealthy Scouting Data</title>
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Stealthy Scouting Data</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
-<style>
-table {
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
-}
+    <style>
+        table {
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
 
-input[type=text] {
-  width: 10%;
-  padding: 5px 4px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-textarea {
-  width: 100%;
-  height: 100px;
-  padding: 12px 20px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f8;
-  resize: none;
-}
+        input[type=text] {
+            width: 10%;
+            padding: 5px 4px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
 
-th {
-	background-color: #000000;
-	color: white;
-}
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 12px 20px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            resize: none;
+        }
 
-th, td {
-  text-align: left;
-  padding: 16px;
-}
+        th {
+            background-color: #000000;
+            color: white;
+        }
 
-img {
-  width: 100%;
-  height: auto;
-}
+        th,
+        td {
+            text-align: left;
+            padding: 16px;
+        }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2
-}
+        img {
+            width: 100%;
+            height: auto;
+        }
 
-.container {
-	margin: auto;
-	padding: 20px 32px;
-}
-/*
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        .container {
+            margin: auto;
+            padding: 20px 32px;
+        }
+
+        /*
 .btn-dark, .btn-dark::shadow {
 	background-color: #FC33FF;
 }
-
 .button {
 	border: none;
 	color: white;
@@ -74,102 +77,106 @@ tr:nth-child(even) {
 	width: 200px;
 	margin: 0 auto;
 }
-
 .button1 {background-color: #4CAF50;} 
 .button2 {background-color: #008CBA;} 
 .button3 {background-color: #FF3333;} 
 .button4 {background-color: #FC33FF;} 
 .button5 {background-color: #FFC933;} 
 */
-</style>
+    </style>
 
-<script>
-	function tickUp(id, iterateVal) {
-		var value = parseInt(document.getElementById(id).value);
-		value = isNaN(value) ? 0 : value;
-		/*if (document.getElementById("highgoal").checked == true)
-		{
-			iterateVal = iterateVal * 2
-		}
-			*/
-		value = (value + iterateVal);
-		document.getElementById(id).value = value;
-		console.log(document.getElementById());
-	}
-</script>
-	
-<script
-		src="https://code.jquery.com/jquery-3.4.1.js"
-		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-		crossorigin="anonymous"></script>
-	<script>
-		function SubForm (){
-			$.ajax({
-				url:"https://api.apispreadsheets.com/data/fidevHc7A6NfheZ7/",
-				type:"post",
-				data:$("#myForm").serializeArray(),
-				success: function(){
-					alert("Form Data Submitted :)")
-				},
-				error: function(){
-					alert("There was an error :(")
-				}
-			});
-		}
-	</script>
+    <script>
+        function tickUp(id, iterateVal, min, max) {
+            var value = parseInt(document.getElementById(id).value);
+            value = isNaN(value) ? 0 : value;
+            /*if (document.getElementById("highgoal").checked == true)
+            {
+            	iterateVal = iterateVal * 2
+            }
+            	*/
+            value = (value + iterateVal);
+            if (value < min) {
+                value = min
+            } else if (value > max) {
+                value = max;
+            }
+            document.getElementById(id).value = value;
+
+            console.log(document.getElementById());
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script>
+        function SubForm() {
+            $.ajax({
+                url: "https://api.apispreadsheets.com/data/fidevHc7A6NfheZ7/",
+                type: "post",
+                data: $("#myForm").serializeArray(),
+                success: function() {
+                    alert("Form Data Submitted :)")
+                },
+                error: function() {
+                    alert("There was an error :(")
+                }
+            });
+        }
+    </script>
+
 </head>
 
 <body>
-	<div class="container">
-		<form id="myForm">
-			<div class="form-row">
-				<br>
-				<label for="teamnum">Team number:</label>
-				<input class="form-control" name="teamnum" id="teamnum">
-				<div class="col">
-					<label>Teleop points: </label>
-					<input class="form-control" name="teleoppts" id="teleoppts" value="0"/>
-
-					<label>Auto points: </label>
-					<input class="form-control" name="autopts" id="autopts" value="0"/>
-				</div>
-				<div class="col">
-					<label>Climb level:</label>
-					<input class="form-control" name="climbpts" id="climbpts" value="0"/>
-
-					<label>Defense score: </label>
-					<input class="form-control" name="defencepts" id="defencepts" value="0"/>
-				</div>
-			</div>
-			<label for="feedback">Feedback/Notes:</label>
-			<input class="form-control" name="feedback" id="feedback" name="feedback"></input>
-			<br>
-			<button class="btn-dark" onclick='SubForm()'>Submit Data</button>
-		</form>
-	</div>
-	
-	
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<button onClick="tickUp('autopts', 2)" type="button" class="btn btn-primary btn-block mb-2 mr-sm-2"> Auto Low </button>
-				<button onClick="tickUp('teleoppts', 1)" type="button" class = "btn btn-success btn-block mb-2 mr-sm-2">Teleop Low </button>
-				<button onClick="tickUp('climbpts', -1)" type="button" class = "btn btn-info btn-block mb-2 mr-sm-2">Climb Level -</button>
-				<button onClick="tickUp('defencepts', -1)" type="button" class = "btn btn-warning btn-block mb-2 mr-sm-2">Defended Shots -</button>
-			</div>
-			<div class="col">
-				<button onClick="tickUp('autopts', 4)" type="button" class = "btn btn-primary btn-block mb-2 mr-sm-2">Auto High</button>
-				<button onClick="tickUp('teleoppts', 2)" type="button" class = "btn btn-success btn-block mb-2 mr-sm-2">Teleop High</button>
-				<button onClick="tickUp('climbpts', 1)" type="button" class = "btn btn-info btn-block mb-2 mr-sm-2"> Climb Level +</button>
-				<button onClick="tickUp('defencepts', 1)" type="button" class = "btn btn-warning btn-block mb-2 mr-sm-2">Defended Shots +</button>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <form id="myForm">
+            <div class="form-row">
+                <br>
+                <label for="teamnum">Team number:</label>
+                <input type="number" class="form-control" name="teamnum" id="teamnum">
+                <div class="col">
+                    <label>Auto points: </label>
+                    <input type="number" class="form-control" name="autopts" id="autopts" value="0" />
+                    <label>Teleop points: </label>
+                    <input type="number" class="form-control" name="teleoppts" id="teleoppts" value="0" />
 
 
+                </div>
+                <div class="col">
+                    <label>Climb level:</label>
+                    <input type="number" class="form-control" name="climbpts" id="climbpts" min="0" max="4" step="1" value="0" />
+
+                    <label>Defense score: </label>
+                    <input type="number" class="form-control" name="defencepts" id="defencepts" value="0" />
+                </div>
+            </div>
+            <label for="feedback">Feedback/Notes:</label>
+            <input class="form-control" name="feedback" id="feedback" name="feedback"></input>
+            <br>
+            <button class="btn-dark" onclick='SubForm()'>Submit Data</button>
+        </form>
+    </div>
 
 
-	<!--
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <button onClick="tickUp('autopts', 2,0,9999)" type="button" class="btn btn-primary btn-block mb-2 mr-sm-2"> Auto Low </button>
+                <button onClick="tickUp('teleoppts', 1,0,9999)" type="button" class="btn btn-success btn-block mb-2 mr-sm-2">Teleop Low </button>
+                <button onClick="tickUp('climbpts', -1,0,4)" type="button" class="btn btn-info btn-block mb-2 mr-sm-2">Climb Level -</button>
+                <button onClick="tickUp('defencepts', -1,0,9999)" type="button" class="btn btn-warning btn-block mb-2 mr-sm-2">Defended Shots -</button>
+            </div>
+            <div class="col">
+                <button onClick="tickUp('autopts', 4,0,9999)" type="button" class="btn btn-primary btn-block mb-2 mr-sm-2">Auto High</button>
+                <button onClick="tickUp('teleoppts', 2,0,9999)" type="button" class="btn btn-success btn-block mb-2 mr-sm-2">Teleop High</button>
+                <button onClick="tickUp('climbpts', 1,0,4)" type="button" class="btn btn-info btn-block mb-2 mr-sm-2"> Climb Level +</button>
+                <button onClick="tickUp('defencepts', 1,0,9999)" type="button" class="btn btn-warning btn-block mb-2 mr-sm-2">Defended Shots +</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--
 	<br>
 			
 			
