@@ -106,22 +106,69 @@
         }
     </script>
 
+
+    
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script>
-        function SubForm() {
-            $.ajax({
-                url: "https://api.apispreadsheets.com/data/fidevHc7A6NfheZ7/",
-                type: "post",
-                data: $("#myForm").serializeArray(),
-                success: function() {
-                    alert("Form Data Submitted :)")
-                },
-                error: function() {
-                    alert("There was an error :(")
-                }
-            });
+        //Clear form once submitted
+        function clearForm(){
+           document.getElementById("myForm").reset();
         }
-    </script>
+        /*
+        $(document).ready(function(){  
+            $("button").click(function(){  
+                var x = $("myForm").serializeArray();  
+            });                                     
+        }); */
+        function AddData() {
+            var formData = $("form").serializeArray();
+            // let csv = "data:text/csv;charset=utf-8,"; // accept data as CSV
+            let csv = "";
+            formData.forEach(function(item) {
+                csv += item.value + ","; // concat form value on csv var and add ; to create columns (you can change to , if want)
+            });
+            csv += "\n";
+            
+
+            
+            document.getElementById("csvshit").value += csv
+            // if you want to download
+            /*
+            var downloadLink = document.createElement("a");
+            downloadLink.setAttribute("download", "FILENAME.csv");
+            downloadLink.setAttribute("href", encodedUri);
+            document.body.appendChild(downloadLink); // Required for FF
+            downloadLink.click();
+            downloadLink.remove();
+            */
+            clearForm();
+        }
+      </script>
+      <script>
+        function SubmitData(textToWrite, fileNameToSaveAs) {
+            var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'}); 
+            var downloadLink = document.createElement("a");
+            downloadLink.download = fileNameToSaveAs;
+            downloadLink.innerHTML = "Download File";
+            if (window.webkitURL != null) {
+            // Chrome allows the link to be clicked
+            // without actually adding it to the DOM.
+            downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+            }
+            else {
+            // Firefox requires the link to be added to the DOM
+            // before it can be clicked.
+            downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+            downloadLink.onclick = destroyClickedElement;
+            downloadLink.style.display = "none";
+            document.body.appendChild(downloadLink);
+            }
+            
+            downloadLink.click();
+        }
+        
+      </script>
+
 
 </head>
 
@@ -151,8 +198,10 @@
             <label for="feedback">Feedback/Notes:</label>
             <input class="form-control" name="feedback" id="feedback" name="feedback"></input>
             <br>
-            <button class="btn-dark" onclick='SubForm()'>Submit Data</button>
+            
         </form>
+        <button class="btn-dark" onclick='AddData()'>Add Data to CSV</button>
+        <button class="btn-dark" onclick='SubmitData(document.getElementById("csvshit").value, "download.csv")'>Download Data</button>
     </div>
 
 
@@ -172,6 +221,13 @@
             </div>
         </div>
     </div>
+
+<div class="container">
+    <p>hey bestie dont edit this unless you know what you're doing love you bye</p>
+<textarea id="csvshit" value="">
+data:text/csv;charset=utf-8,\n,teamnum,teleoppts,autopts,climbpts,defencepts,feedback,\n
+</textarea>
+</div>
 
 
 
